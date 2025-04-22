@@ -1,15 +1,15 @@
 # 🛡️ Snort 3 IDS Lab – Detecting Unauthorized Remote Access
 
-This project documents the full installation and configuration of **Snort++ (3.7.2.0)** on **Kali Linux**, compiled from source and enhanced with `DAQ` and `snort3_extra`.
+This project documents the full installation and configuration of **Snort++ (3.7.2.0)** on **Kali Linux**, compiled from source and enhanced with `snort3_extra`.
 
-This lab is based on the **TryHackMe SOC1** path and simulates a realistic environment for traffic monitoring and alerting.
+This lab attempts to simulates a realistic environment for traffic monitoring and alerting.
 
 ---
 
 ## 🎯 Objectives
 
 - Compile and install Snort 3 from source
-- Enable packet capture support (DAQ + PCAP)
+- Enable packet capture support
 - Install `snort3_extra` modules for advanced inspection
 - Simulate remote access attempts between VMs
 - Build a detection-ready IDS
@@ -51,14 +51,14 @@ Installing all the required libraries and development tools.
 ---
 
 ### 4. Downloading Snort, DAQ and Extras  
-Cloning or downloading the Snort 3, DAQ 3.0.19 and snort3_extra source files.
+Downloading and extracting the Snort 3, DAQ 3.0.19 and snort3_extra source files.
 
 ![Download Snort](images/4-Download-Snort.png)
 
 ---
 
 ### 5. Compiling and Installing DAQ  
-Building the DAQ modules (including `daq_pcap`) required by Snort.
+Building the DAQ modules required by Snort.
 
 ![Install DAQ](images/5-Install-daq.png)
 
