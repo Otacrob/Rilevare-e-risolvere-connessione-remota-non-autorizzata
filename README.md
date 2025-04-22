@@ -85,8 +85,8 @@ Installing the compiled Snort binaries and libraries into the system path (/usr/
 
 ---
 
-### 9. Configuring Snort  
-Setting the correct DAQ module path and testing the default Lua configuration to validate that Snort can load all required modules.
+### 9. Post-install Configuration  
+Running `ldconfig` to refresh shared library links after installing Snort. This ensures all dependencies (like DAQ modules) are correctly linked when Snort is executed.
 
 ![Configuring Snort](images/9-Configuring-snort.png)
 
