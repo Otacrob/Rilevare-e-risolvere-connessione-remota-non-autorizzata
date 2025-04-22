@@ -39,77 +39,77 @@ Creating and launching the virtual Kali machines.
 ### 2. System Update  
 Updating the system to ensure a stable base before installing dependencies.
 
-![System Update](images/2-kali-update.png)
+![System Update](images/2-kali update.png)
 
 ---
 
 ### 3. Installing Dependencies  
 Installing all the required libraries and development tools.
 
-![Install Dependencies](images/3-Install-dependencies.png)
+![Install Dependencies](images/3-Install dependencies.png)
 
 ---
 
 ### 4. Downloading Snort, DAQ and Extras  
 Cloning or downloading the Snort 3, DAQ 3.0.19 and snort3_extra source files.
 
-![Download Snort](images/4-Download-Snort.png)
+![Download Snort](images/4 Download Snort.png)
 
 ---
 
 ### 5. Compiling and Installing DAQ  
 Building the DAQ modules (including `daq_pcap`) required by Snort.
 
-![Install DAQ](images/5-Install-daq.png)
+![Install DAQ](images/5-Install daq.png)
 
 ---
 
 ### 6. Configuring Snort with CMake  
 Setting up the Snort 3 build using the included configuration script.
 
-![CMake Setup](images/6-Cmake-setup.png)
+![CMake Setup](images/6-Cmake setup.png)
 
 ---
 
 ### 7. Building Snort  
 Compiling Snort from source using `make`.
 
-![Building Snort](images/7-Building-Snort.png)
+![Building Snort](images/7-Building Snort.png)
 
 ---
 
 ### 8. Installing Snort  
 Installing Snort binaries and libraries on the system.
 
-![Installing Snort](images/8-Installing-Snort.png)
+![Installing Snort](images/8-Installing Snort.png)
 
 ---
 
 ### 9. Configuring Snort  
 Linking the DAQ module path and preparing the Lua configuration file.
 
-![Configuring Snort](images/9-Configuring-snort.png)
+![Configuring Snort](images/9-Configuring snort.png)
 
 ---
 
 ### 10. Compiling snort3_extra  
 Building the additional inspection modules and protocol parsers.
 
-![Compiling Extra](images/10-Compiling-Snort-extra.png)
+![Compiling Extra](images/10-Compiling Snort extra.png)
 
 ---
 
 ### 11. Installing snort3_extra  
 Installing the compiled extras into the system.
 
-![Installing Extra](images/11-Installing-snort-extra.png)
+![Installing Extra](images/11-Installing snort extra.png)
 
 ---
 
 ### 12. Testing Snort  
 Launching Snort with its Lua config and confirming DAQ functionality.
 
-![Testing Snort](images/12-Testing-snort.png)
+![Testing Snort](images/12-Testing snort.png)
 
 ---
 
