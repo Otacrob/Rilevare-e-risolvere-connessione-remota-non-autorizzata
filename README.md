@@ -37,14 +37,14 @@ Creating two virtual environments based on Kali Linux (one for IDS and analysis 
 ---
 
 ### 2. System Update  
-Updating the system to ensure a stable base before installing dependencies.
+Updating Kali Linux to ensure compatibility and stability before building Snort and its dependencies.
 
 ![System Update](images/2-kali-update.png)
 
 ---
 
 ### 3. Installing Dependencies  
-Installing all the required libraries and development tools.
+Installing all necessary development tools and libraries (compilers, network capture libs, LuaJIT, etc.) required for compiling Snort and DAQ from source.
 
 ![Install Dependencies](images/3-Install-dependencies.png)
 
@@ -65,49 +65,49 @@ Compiling and installing **libdaq version 3.0.19** from source. This step enable
 ---
 
 ### 6. Configuring Snort with CMake  
-Setting up the Snort 3 build using the included configuration script.
+Preparing the Snort 3 build environment using its custom configuration script to generate the required CMake structure and enable optional features such as tcmalloc — a high-performance memory allocator that reduces memory fragmentation and improves allocation speed, especially in multi-threaded environments. This optimization is particularly beneficial for Snort, which processes high volumes of packets and performs intensive rule-matching operations in real time.
 
 ![CMake Setup](images/6-Cmake-setup.png)
 
 ---
 
 ### 7. Building Snort  
-Compiling Snort from source using `make`.
+Compiling the Snort engine source code into executable binaries using the generated CMake files.
 
 ![Building Snort](images/7-Building-Snort.png)
 
 ---
 
 ### 8. Installing Snort  
-Installing Snort binaries and libraries on the system.
+Installing the compiled Snort binaries and libraries into the system path (/usr/local) and updating the dynamic linker cache.
 
 ![Installing Snort](images/8-Installing-Snort.png)
 
 ---
 
 ### 9. Configuring Snort  
-Linking the DAQ module path and preparing the Lua configuration file.
+Setting the correct DAQ module path and testing the default Lua configuration to validate that Snort can load all required modules.
 
 ![Configuring Snort](images/9-Configuring-snort.png)
 
 ---
 
 ### 10. Compiling snort3_extra  
-Building the additional inspection modules and protocol parsers.
+Building the snort3_extra modules which include additional protocol parsers and enhancements to extend Snort’s detection capabilities.
 
 ![Compiling Extra](images/10-Compiling-Snort-extra.png)
 
 ---
 
 ### 11. Installing snort3_extra  
-Installing the compiled extras into the system.
+Installing the compiled snort3_extra modules into the system to be available for use by Snort during runtime.
 
 ![Installing Extra](images/11-Installing-snort-extra.png)
 
 ---
 
 ### 12. Testing Snort  
-Launching Snort with its Lua config and confirming DAQ functionality.
+Running Snort with the validated Lua configuration to ensure that the engine initializes correctly and the DAQ modules are loaded successfully.
 
 ![Testing Snort](images/12-Testing-snort.png)
 
