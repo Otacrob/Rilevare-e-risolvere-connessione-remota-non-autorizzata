@@ -1,114 +1,104 @@
-# 🛡️ Snort 3.7.2.0 - Manual Build & Installation (Kali Linux)
+# 🛡️ Detecting and Resolving Unauthorized Remote Access with Snort 3
 
-This repository documents the complete manual installation of **Snort 3.7.2.0** on **Kali Linux**, including **DAQ 3.0.19**, **PCAP support**, and **snort3_extra modules**.
-
-The process was performed entirely from source to ensure full understanding of dependency management, module linkage, and Snort's modular architecture.
-
----
-
-## ✅ System Requirements
-
-- OS: Kali Linux (Debian-based)
-- Kernel: 6.x+
-- User: root or user with `sudo` privileges
+This project documents the process of installing, configuring, and testing **Snort 3.7.2.0** on **Kali Linux**, with full `DAQ` and `snort3_extra` support.  
+It is based on my learning path from the **TryHackMe SOC1** module, focusing on **network traffic inspection** and **intrusion detection** in a virtualized lab environment.
 
 ---
 
-## 📦 Dependencies
+## 🎯 Project Goals
 
-Install the full set of required libraries and tools:
+- ✔️ Install Snort 3 from source
+- ✔️ Enable DAQ with PCAP live capture
+- ✔️ Compile and load `snort3_extra` modules
+- ✔️ Prepare Snort for alerting on malicious activity
+- ✔️ Document the entire build and testing process
+
+---
+
+## 🧰 Environment
+
+- 🖥️ Virtualization: **VirtualBox**
+- 🐧 OS: **Kali Linux 2025.1a**
+- 💡 Setup: 2 VMs – `Kali-attacker` and `Kali-target`
+- 🌐 Network: Host-only adapter for internal attack simulation
+
+---
+
+## ⚙️ Dependencies
+
+Run the following commands before compiling Snort:
 
 ```bash
-sudo apt update && sudo apt install -y \
-  build-essential cmake make g++ bison flex zlib1g-dev \
-  libpcap-dev libpcre2-dev libdumbnet-dev libluajit-5.1-dev \
-  libhwloc-dev libssl-dev libnghttp2-dev liblzma-dev \
-  uuid-dev libffi-dev libmnl-dev \
-  pkg-config git autoconf libtool automake \
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install -y \
+  build-essential libpcap-dev libpcre3-dev libdumbnet-dev \
+  bison flex zlib1g-dev liblzma-dev openssl libssl-dev \
+  libnghttp2-dev autoconf libtool cmake pkg-config \
+  libluajit-5.1-dev libhwloc-dev libmnl-dev \
   libgoogle-perftools-dev
+🔧 Build Process (from source)
+Download Snort, DAQ, and Snort Extra from GitHub
 
-## 📸 Installation Process – Step-by-Step Screenshots
+Compile & install DAQ (libdaq 3.0.19)
 
----
+Build Snort 3 with --enable-tcmalloc
 
-### 🖥️ 1. Virtual Machines Setup
-Creating and configuring Kali VMs for attacker and target in VirtualBox.
+Set DAQ module path:
 
-![VMs](images/1-VMs.png)
+bash
+Copia
+Modifica
+export SNORT_DAQ_PATH=/usr/local/lib/daq
+Install snort3_extra modules
 
----
+Run Snort with snort.lua config and test it
 
-### 🔧 2. Updating Kali Linux
-Keeping the system up to date before compiling.
+🖼️ Installation Process – Step-by-Step
+1. Virtual Machines Setup
 
-![System Update](images/2-kali-update.png)
+2. System Update
 
----
+3. Installing Dependencies
 
-### 📦 3. Installing Dependencies
-Installing all required libraries and tools via APT.
+4. Downloading Snort, DAQ, snort3_extra
 
-![Dependencies](images/3-Install-dependencies.png)
+5. Installing DAQ
 
----
+6. Snort CMake Configuration
 
-### ⬇️ 4. Downloading Snort, DAQ, and snort3_extra
-Fetching the source packages from GitHub.
+7. Building Snort
 
-![Download Snort](images/4-Download-Snort.png)
+8. Installing Snort
 
----
+9. Configuring Snort
 
-### 🔧 5. Building and Installing DAQ
-Compiling DAQ 3.0.19 with PCAP support.
+10. Compiling snort3_extra
 
-![Install DAQ](images/5-Install-daq.png)
+11. Installing snort3_extra
 
----
+12. Testing Snort
 
-### ⚙️ 6. Configuring Snort with CMake
-Preparing the Snort build with optional TCMalloc support.
+✅ Result
+🧠 Snort 3 compiled and installed
 
-![CMake Setup](images/6-Cmake-setup.png)
+📡 PCAP support enabled via DAQ
 
----
+📦 Extra modules ready (Modbus, S7Comm, AppID, etc.)
 
-### 🧱 7. Building Snort
-Compiling Snort 3 from source using `make -j$(nproc)`.
+🔄 Configuration validated successfully
 
-![Building Snort](images/7-Building-Snort.png)
+🔜 Next Steps
+✍️ Write a custom Snort rule
 
----
+🧪 Simulate a remote connection attempt (e.g., SSH brute force)
 
-### 📥 8. Installing Snort
-Installing Snort binaries into the system.
+📊 Analyze and capture alerts via alert_fast, PCAPs, or Wireshark
 
-![Installing Snort](images/8-Installing-Snort.png)
+📂 Organize detections under /rules and /pcap folders
 
----
+👤 Author
+Built during the TryHackMe SOC1 learning path
+📚 Focused on real-world detection engineering using open-source IDS
 
-### ⚙️ 9. Configuring Snort
-Validating configuration, environment, and DAQ path.
-
-![Configuring Snort](images/9-Configuring-snort.png)
-
----
-
-### 🧩 10. Compiling snort3_extra Modules
-Building optional modules and Lua helpers.
-
-![Compiling Snort Extra](images/10-Compiling-Snort-extra.png)
-
----
-
-### 📦 11. Installing snort3_extra
-Installing extended functionality and example rules.
-
-![Installing Snort Extra](images/11-Installing-snort-extra.png)
-
----
-
-### ✅ 12. Final Test – Snort Validated
-Running Snort and validating proper DAQ setup.
-
-![Testing Snort](images/12-Testing-snort.png)
+Feel free to fork this project, contribute, or reach out!
