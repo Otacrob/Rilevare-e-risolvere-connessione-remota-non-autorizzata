@@ -30,7 +30,7 @@ This lab attempts to simulates a realistic environment for traffic monitoring an
 ## 📸 Installation Steps (Visual Walkthrough)
 
 ### 1. Virtual Machine Setup  
-Creating and launching the virtual Kali machines.
+Creating two virtual environments based on Kali Linux (one for IDS and analysis purposes and the other to create network traffic attempting to connect to the first machine) and launching the defending machine.
 
 ![VMs](images/1-VMs.png)
 
