@@ -1,104 +1,140 @@
-# 🛡️ Detecting and Resolving Unauthorized Remote Access with Snort 3
+# 🛡️ Snort 3 IDS Lab – Detecting Unauthorized Remote Access
 
-This project documents the process of installing, configuring, and testing **Snort 3.7.2.0** on **Kali Linux**, with full `DAQ` and `snort3_extra` support.  
-It is based on my learning path from the **TryHackMe SOC1** module, focusing on **network traffic inspection** and **intrusion detection** in a virtualized lab environment.
+This project documents the full installation and configuration of **Snort++ (3.7.2.0)** on **Kali Linux**, compiled from source and enhanced with `DAQ` and `snort3_extra`.
 
----
-
-## 🎯 Project Goals
-
-- ✔️ Install Snort 3 from source
-- ✔️ Enable DAQ with PCAP live capture
-- ✔️ Compile and load `snort3_extra` modules
-- ✔️ Prepare Snort for alerting on malicious activity
-- ✔️ Document the entire build and testing process
+This lab is based on the **TryHackMe SOC1** path and simulates a realistic environment for traffic monitoring and alerting.
 
 ---
 
-## 🧰 Environment
+## 🎯 Objectives
 
-- 🖥️ Virtualization: **VirtualBox**
-- 🐧 OS: **Kali Linux 2025.1a**
-- 💡 Setup: 2 VMs – `Kali-attacker` and `Kali-target`
-- 🌐 Network: Host-only adapter for internal attack simulation
+- Compile and install Snort 3 from source
+- Enable packet capture support (DAQ + PCAP)
+- Install `snort3_extra` modules for advanced inspection
+- Simulate remote access attempts between VMs
+- Build a detection-ready IDS
 
 ---
 
-## ⚙️ Dependencies
+## 🧪 Environment
 
-Run the following commands before compiling Snort:
+| Component       | Setup                                   |
+|----------------|------------------------------------------|
+| OS              | Kali Linux (Attacker + Target VMs)      |
+| Hypervisor      | VirtualBox                               |
+| Network Mode    | Host-only Adapter                        |
+| IDS Tool        | Snort++ 3.7.2.0                          |
 
-```bash
-sudo apt update && sudo apt upgrade -y
+---
 
-sudo apt install -y \
-  build-essential libpcap-dev libpcre3-dev libdumbnet-dev \
-  bison flex zlib1g-dev liblzma-dev openssl libssl-dev \
-  libnghttp2-dev autoconf libtool cmake pkg-config \
-  libluajit-5.1-dev libhwloc-dev libmnl-dev \
-  libgoogle-perftools-dev
-🔧 Build Process (from source)
-Download Snort, DAQ, and Snort Extra from GitHub
+## 📸 Installation Steps (Visual Walkthrough)
 
-Compile & install DAQ (libdaq 3.0.19)
+### 1. Virtual Machine Setup  
+Creating and launching the virtual Kali machines.
 
-Build Snort 3 with --enable-tcmalloc
+![VMs](images/1-VMs.png)
 
-Set DAQ module path:
+---
 
-bash
-Copia
-Modifica
-export SNORT_DAQ_PATH=/usr/local/lib/daq
-Install snort3_extra modules
+### 2. System Update  
+Updating the system to ensure a stable base before installing dependencies.
 
-Run Snort with snort.lua config and test it
+![System Update](images/2-kali-update.png)
 
-🖼️ Installation Process – Step-by-Step
-1. Virtual Machines Setup
+---
 
-2. System Update
+### 3. Installing Dependencies  
+Installing all the required libraries and development tools.
 
-3. Installing Dependencies
+![Install Dependencies](images/3-Install-dependencies.png)
 
-4. Downloading Snort, DAQ, snort3_extra
+---
 
-5. Installing DAQ
+### 4. Downloading Snort, DAQ and Extras  
+Cloning or downloading the Snort 3, DAQ 3.0.19 and snort3_extra source files.
 
-6. Snort CMake Configuration
+![Download Snort](images/4-Download-Snort.png)
 
-7. Building Snort
+---
 
-8. Installing Snort
+### 5. Compiling and Installing DAQ  
+Building the DAQ modules (including `daq_pcap`) required by Snort.
 
-9. Configuring Snort
+![Install DAQ](images/5-Install-daq.png)
 
-10. Compiling snort3_extra
+---
 
-11. Installing snort3_extra
+### 6. Configuring Snort with CMake  
+Setting up the Snort 3 build using the included configuration script.
 
-12. Testing Snort
+![CMake Setup](images/6-Cmake-setup.png)
 
-✅ Result
-🧠 Snort 3 compiled and installed
+---
 
-📡 PCAP support enabled via DAQ
+### 7. Building Snort  
+Compiling Snort from source using `make`.
 
-📦 Extra modules ready (Modbus, S7Comm, AppID, etc.)
+![Building Snort](images/7-Building-Snort.png)
 
-🔄 Configuration validated successfully
+---
 
-🔜 Next Steps
-✍️ Write a custom Snort rule
+### 8. Installing Snort  
+Installing Snort binaries and libraries on the system.
 
-🧪 Simulate a remote connection attempt (e.g., SSH brute force)
+![Installing Snort](images/8-Installing-Snort.png)
 
-📊 Analyze and capture alerts via alert_fast, PCAPs, or Wireshark
+---
 
-📂 Organize detections under /rules and /pcap folders
+### 9. Configuring Snort  
+Linking the DAQ module path and preparing the Lua configuration file.
 
-👤 Author
-Built during the TryHackMe SOC1 learning path
-📚 Focused on real-world detection engineering using open-source IDS
+![Configuring Snort](images/9-Configuring-snort.png)
 
-Feel free to fork this project, contribute, or reach out!
+---
+
+### 10. Compiling snort3_extra  
+Building the additional inspection modules and protocol parsers.
+
+![Compiling Extra](images/10-Compiling-Snort-extra.png)
+
+---
+
+### 11. Installing snort3_extra  
+Installing the compiled extras into the system.
+
+![Installing Extra](images/11-Installing-snort-extra.png)
+
+---
+
+### 12. Testing Snort  
+Launching Snort with its Lua config and confirming DAQ functionality.
+
+![Testing Snort](images/12-Testing-snort.png)
+
+---
+
+## ✅ Final Outcome
+
+- ✅ Snort 3 built and installed successfully
+- ✅ DAQ with `pcap` module fully working
+- ✅ snort3_extra modules installed and ready
+- ✅ Lab environment prepared for live testing and rule development
+
+---
+
+## 📂 Next Steps
+
+- ✍️ Write detection rules (e.g., SSH brute-force)
+- 🧪 Simulate traffic between attacker and target VM
+- 📊 Capture alerts and logs for analysis (PCAP / fast alert)
+- 📁 Organize your project with `/rules`, `/pcap`, `/log` folders
+
+---
+
+## 👤 Author
+
+This repository was created during the **TryHackMe SOC1 path** to demonstrate real-world IDS deployment from scratch.
+
+Feel free to fork, contribute, or reach out!
+
+⭐ **Star the repo** if this helped you set up your own Snort lab!
