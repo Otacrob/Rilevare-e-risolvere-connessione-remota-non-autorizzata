@@ -58,7 +58,7 @@ Downloading and extracting the Snort 3, DAQ 3.0.19 and snort3_extra source files
 ---
 
 ### 5. Compiling and Installing DAQ  
-Building the DAQ modules required by Snort.
+Compiling and installing **libdaq version 3.0.19** from source. This step enables Snort to interface with different packet acquisition methods (like `pcap`, `afpacket`, `nfq`, etc.), which are essential for capturing and inspecting live network traffic.
 
 ![Install DAQ](images/5-Install-daq.png)
 
