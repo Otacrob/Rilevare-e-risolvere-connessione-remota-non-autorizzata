@@ -121,13 +121,61 @@ Running Snort with the validated Lua configuration to ensure that the engine ini
 - ✅ Lab environment prepared for live testing and rule development
 
 ---
+🔐 Custom SSH Rule Setup and Testing with Snort 3
+This section documents the creation of a custom Snort 3 rule to detect SSH connection attempts, including configuration and validation steps with illustrative screenshots.
 
-## 📂 Next Steps
+1. Checking the Rules File Existence
+We verify the presence of Snort configuration files under /usr/local/etc/snort.
 
-- ✍️ Write detection rules (e.g., SSH brute-force)
-- 🧪 Simulate traffic between attacker and target VM
-- 📊 Capture alerts and logs for analysis (PCAP / fast alert)
-- 📁 Organize your project with `/rules`, `/pcap`, `/log` folders
+![Checking the Rules File Existence](./images/1.checking-rules-file-existence.png)
+
+2. Creating the Rules File
+We create the rules directory and the custom.rules file for our custom SSH detection logic.
+
+![Creating the Rules File](./images/2.Creating-the-rules-file.png)
+
+3. Opening the Rules File with Nano
+We edit the custom.rules file using nano.
+
+![Opening the Rules File with Nano](./images/3.Opening-it-with-nano.png)
+
+4. Writing the SSH Detection Rule
+We insert a rule that alerts on any TCP connection targeting port 22.
+
+alert tcp any any -> any 22 (msg:"[SSH DETECTED] SSH connection attempt detected"; sid:1000001; rev:1;)
+![Writing the SSH Detection Rule](./images/4.Writing-detection-rule.png)
+
+5. Opening the Snort Configuration File
+We open snort.lua to link our new rule file.
+
+![Opening the Snort Configuration File](./images/5.Opening-lua-file.png)
+
+6. Modifying the IPS Section
+We edit the ips block in the .lua config to load our custom rule.
+
+![Modifying the IPS Section](./images/6.Lua-ips-section.png)
+
+7. Testing the Lua Configuration
+We validate the configuration with Snort’s test mode.
+
+![Testing the Lua Configuration](./images/7.Testing-the-lua-file.png)
+
+8. Identifying the Interface for Snort
+We identify the correct interface (eth1) where Snort should listen.
+
+![Identifying the Interface for Snort](./images/8.Getting-the-defending-ip-address.png)
+
+9. Starting Snort in IDS Mode
+We launch Snort using the .lua configuration on the selected interface.
+
+![Starting Snort in IDS Mode](./images/9.Starting-snort-on-IDS-mode.png)
+
+10. Initiating SSH Connection for Detection
+An SSH connection attempt is initiated from the attacker machine to test the rule.
+
+![Initiating SSH Connection for Detection](./images/10.Starting-the-connection-attempt.png)
+
+
 
 ---
 
