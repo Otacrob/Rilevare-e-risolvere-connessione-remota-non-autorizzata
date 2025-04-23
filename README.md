@@ -168,7 +168,7 @@ We identify the correct interface (eth1) where Snort should listen.
 9. Starting Snort in IDS Mode
 We launch Snort using the .lua configuration on the selected interface.
 
-![Starting Snort in IDS Mode](./ssh/9.Starting-snort-on-IDS-mode.png)
+![Starting Snort in IDS Mode](./ssh/9.Starting-snort-in-IDS-mode.png)
 
 10. Initiating SSH Connection for Detection
 An SSH connection attempt is initiated from the attacker machine to test the rule.
