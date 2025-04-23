@@ -175,7 +175,10 @@ An SSH connection attempt is initiated from the attacker machine to test the rul
 
 ![Initiating SSH Connection for Detection](./ssh/10.Starting-the-connection-attempt.png)
 
+11. Succesful Detection
+The SSH rule worked well and detected the connection attempt.
 
+![Initiating SSH Connection for Detection](./ssh/11.Detection-alert.png)
 
 ---
 
