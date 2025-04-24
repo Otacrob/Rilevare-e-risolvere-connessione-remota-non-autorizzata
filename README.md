@@ -280,6 +280,8 @@ We used `zeek-cut` to extract the origin and destination IP addresses directly f
 
 ![Using zeek-cut](zeek/11.Using-the-zeek-cut-function-to-look-at-ips.png)
 
+From here, we can take further steps to restrict access from the identified malicious IP address. While this measure may not be foolproof or long-lasting on their own, they represent practical and immediate defense strategies that can significantly reduce risk.
+Alternatively, a great solution could be to restrict access to port 22 to specific IP addresses using firewall rules.
 ---
 
 ### ✅ Final Outcome
