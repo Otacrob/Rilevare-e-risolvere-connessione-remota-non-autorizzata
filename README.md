@@ -182,10 +182,115 @@ The SSH rule worked well and detected the connection attempt.
 
 ---
 
+## 🧪 Part 3 – Forensic Packet Analysis with Zeek
+
+In this final phase of the project, we leveraged **Zeek** to conduct an in-depth forensic analysis on traffic captured by Snort. The goal was to identify, inspect, and extract intelligence from suspicious SSH traffic.
+
+---
+
+### 🔧 Installing Zeek from Source
+
+Due to dependency issues when using `apt`, we opted to compile and install Zeek directly from source.
+
+#### 1. Installing Required Dependencies
+
+We began by installing all necessary libraries and build tools.
+
+![Installing Zeek Libraries](zeek/1.Installing-zeek-libraries.png)
+
+---
+
+#### 2. Cloning the Zeek GitHub Repository
+
+We moved into the `/opt` directory and cloned Zeek with all submodules.
+
+![Downloading Zeek](zeek/2.Downloading-zeek.png)
+
+---
+
+#### 3. Creating the Build Directory
+
+To keep the build environment clean, we created a `build` folder inside Zeek’s directory.
+
+![Creating Build Directory](zeek/3.Creating-a-build-directory.png)
+
+---
+
+#### 4. Generating the Makefile
+
+We used `../configure` inside the build directory to generate the Makefile.
+
+![Creating Makefile](zeek/4.Creating-the-make-file.png)
+
+---
+
+#### 5. Compiling Zeek
+
+We compiled the source using all available cores to speed up the process with `make -j$(nproc)`.
+
+![Compiling Zeek](zeek/5.Optimizing-the-make-process.png)
+
+---
+
+#### 6. Installing Zeek
+
+With compilation complete, we installed Zeek with root privileges.
+
+![Installing Zeek](zeek/6.Installing-zeek.png)
+
+---
+
+#### 7. Configuring CLI Access
+
+To access `zeek` globally from any terminal, we added it to the system’s `PATH` and sourced the `.zshrc`.
+
+![Setting Zeek Path](zeek/7.Correcting-the-zeek-path-for-the-CLI.png)
+
+---
+
+### 🕵️ Packet Analysis with Zeek
+
+#### 8. Parsing the PCAP File
+
+We used Zeek to parse the `.pcap` file previously captured by Snort.
+
+![Running Zeek on Snort Log](zeek/8.Elaborating-the-log-with-zeek.png)
+
+---
+
+#### 9. Reviewing Generated Logs
+
+Zeek automatically generated several log files, including `conn.log`, `ssh.log`, and `weird.log`.
+
+![Zeek Generated Logs](zeek/9.Check-the-generated-pcaps.png)
+
+---
+
+#### 10. Inspecting SSH Connections
+
+We identified the suspicious SSH connection through a grep search inside `conn.log`.
+
+![Inspecting conn.log](zeek/10.Inspecting-the-conn.log-looking-for-ssh-connections.png)
+
+---
+
+#### 11. Extracting IPs Using `zeek-cut`
+
+We used `zeek-cut` to extract the origin and destination IP addresses directly from `ssh.log`.
+
+![Using zeek-cut](zeek/11.Using-the-zeek-cut-function-to-look-at-ips.png)
+
+---
+
+### ✅ Final Outcome
+
+- ✅ Zeek installed and configured from source  
+- ✅ Snort-generated PCAP successfully analyzed  
+- ✅ Log files reviewed, attacker IPs extracted  
+- ✅ Intelligence gained from traffic inspection  
+
 ## 👤 Author
 
 This repository was created during the **TryHackMe SOC1 path** to demonstrate real-world IDS deployment from scratch.
 
 Feel free to fork, contribute, or reach out!
-
-⭐ **Star the repo** if this helped you set up your own Snort lab!
