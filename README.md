@@ -8,11 +8,11 @@ This lab attempts to simulates a realistic environment for traffic monitoring an
 
 ## 🎯 Objectives
 
-- Compile and install Snort 3 from source
-- Enable packet capture support
-- Install `snort3_extra` modules for advanced inspection
-- Simulate remote access attempts between VMs
-- Build a detection-ready IDS
+- Compile and install Snort 3 and snort3_extra from source
+- Enable packet capture (pcap) support
+- Simulate remote access attempts between virtual machines and detect the traffic with Snort
+- Install Zeek from source for traffic analysis
+- Parse and analyze PCAP files to identify malicious IP addresses and patterns
 
 ---
 
